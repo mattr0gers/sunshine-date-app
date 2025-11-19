@@ -486,10 +486,12 @@ def main():
         "_Answers ignore case, spaces, and punctuation._"
     )
 
+    # Initialise session state
     if "stage_index" not in st.session_state:
         st.session_state.stage_index = 0
         st.session_state.finished = False
 
+    # If finished, show end screen
     if st.session_state.finished:
         st.success("🎉 You’ve completed all stages of the Sunshine Coast Puzzle Date! 🎉")
         if st.button("Restart adventure"):
@@ -497,41 +499,50 @@ def main():
             st.session_state.finished = False
         return
 
+    # Current stage
     idx = st.session_state.stage_index
     stage = stages[idx]
     total = len(stages)
 
+    # Progress & header
     st.progress((idx + 1) / total)
     st.subheader(f"Stage {stage.number}: {stage.name}")
+
+    # Show puzzle text
     st.markdown(stage.prompt.replace("\n", "  \n"))
 
-    answer = st.text_input("Your answer:")
+    # Input + buttons
+    answer = st.text_input("Your answer:", key=f"answer_{stage.number}")
     col1, col2 = st.columns(2)
     submit = col1.button("Submit ✅")
     show_hint = col2.button("Hint 💡")
 
+    # Show hint
     if show_hint:
         st.info(stage.hint)
 
+    # Normalised answers
     normalized_accept = [normalize(a) for a in stage.acceptable_answers]
 
+    # Handle submit
     if submit:
         if not answer.strip():
             st.warning("Type something first 🙂")
         else:
             user_norm = normalize(answer)
             if user_norm in normalized_accept:
-                st.success("Correct! 🎯")
+                st.success("Correct! 🎯 Moving on...")
+                # Advance immediately
                 if idx + 1 < total:
-                    if st.button("Next stage ➡️"):
-                        st.session_state.stage_index += 1
-                        st.experimental_rerun()
+                    st.session_state.stage_index += 1
                 else:
                     st.session_state.finished = True
-                    st.experimental_rerun()
+                st.experimental_rerun()
             else:
                 st.error("Not quite. Try again or tap **Hint 💡**.")
 
 
+
 if __name__ == "__main__":
     main()
+
