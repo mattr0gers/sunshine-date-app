@@ -7,7 +7,7 @@ Controls:
 - Type 'hint' for a clue for that stage
 - Type 'q' to quit
 """
-
+import streamlilt as st
 from dataclasses import dataclass
 from typing import List
 
@@ -763,3 +763,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
