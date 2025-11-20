@@ -577,37 +577,10 @@ Stage(
         hint="Put the suburb word first, then a phrase for the river path or park there.",
     ),
 
-    # STAGE 18 – LOVE WORD
+    # STAGE 18 – FINAL HIDDEN SENTENCE
 
     Stage(
         number=18,
-        name="Love Riddle – Reflection Choice",
-        prompt=(
-            "TRAVEL:\n"
-            "You’re already on the riverwalk – just stroll a bit.\n\n"
-            "PUZZLE 18 – CHOOSE ONE WORD\n"
-            "Which feels most like LOVE to you right now:\n"
-            "  • moving\n"
-            "  • reflected\n"
-            "  • still\n\n"
-            "There is no wrong answer – just what feels true.\n\n"
-            "ROMANTIC PROMPT (AFTER ANSWERING):\n"
-            "Share with each other:\n"
-            "  • Why did you choose that word? What about your connection feels like that?\n\n"
-            "Type your chosen word:"
-        ),
-        acceptable_answers=[
-            "moving",
-            "reflected",
-            "still",
-        ],
-        hint="This is about feeling, not correctness. Pick the word that resonates.",
-    ),
-
-    # STAGE 19 – FINAL HIDDEN SENTENCE
-
-    Stage(
-        number=19,
         name="Final Romantic Diagonal – Hidden Sentence",
         prompt=(
             "TRAVEL:\n"
@@ -741,6 +714,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
