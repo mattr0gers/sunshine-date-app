@@ -559,7 +559,7 @@ Stage(
         name="Riverwalk – Location Cipher",
         prompt=(
             "TRAVEL TO THIS STAGE:\n"
-            "From your dessert place, DRIVE to a riverfront walk at Cotton Tree.\n\n"
+            "From your dessert place, DRIVE to a riverfront walk at a beach.\n\n"
             "PUZZLE 17 – SCRAMBLED CHUNKS\n"
             "  TREE   COT   RIV   WALK\n\n"
             "Rearrange these into a sensible two or three word place name\n"
@@ -585,7 +585,7 @@ Stage(
         prompt=(
             "TRAVEL:\n"
             "Stay right here on the riverwalk, maybe pause somewhere quiet with a view.\n\n"
-            "PUZZLE 19 – ONE CAPITAL PER LINE\n"
+            "PUZZLE 18 – ONE CAPITAL PER LINE\n"
             "Your last card looks like a block of perfectly normal sentences –\n"
             "except each line hides ONE capital letter somewhere in the middle.\n"
             "The note says:\n\n"
@@ -714,6 +714,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
