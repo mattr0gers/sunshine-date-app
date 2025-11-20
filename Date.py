@@ -696,7 +696,7 @@ def main():
     # Show puzzle text
     st.markdown(stage.prompt.replace("\n", "  \n"))
 
-    # Input + buttons
+    # Input + submit / hint buttons
     answer = st.text_input("Your answer:", key=f"answer_{stage.number}")
     col1, col2 = st.columns(2)
     submit = col1.button("Submit ✅")
@@ -709,7 +709,7 @@ def main():
     # Normalised answers
     normalized_accept = [normalize(a) for a in stage.acceptable_answers]
 
-    # Handle submit
+    # Handle submit (auto-advance on correct)
     if submit:
         if not answer.strip():
             st.warning("Type something first 🙂")
@@ -717,7 +717,6 @@ def main():
             user_norm = normalize(answer)
             if user_norm in normalized_accept:
                 st.success("Correct! 🎯 Moving on...")
-                # Advance immediately
                 if idx + 1 < total:
                     st.session_state.stage_index += 1
                 else:
@@ -726,8 +725,22 @@ def main():
             else:
                 st.error("Not quite. Try again or tap **Hint 💡**.")
 
+    # --- Manual navigation buttons (back / forward) ---
+    nav_col1, nav_col2 = st.columns(2)
+    with nav_col1:
+        if st.button("⬅ Previous stage"):
+            if st.session_state.stage_index > 0:
+                st.session_state.stage_index -= 1
+                st.rerun()
+    with nav_col2:
+        if st.button("Next stage ➡"):
+            if st.session_state.stage_index < total - 1:
+                st.session_state.stage_index += 1
+                st.rerun()
+
 
 if __name__ == "__main__":
     main()
+
 
 
