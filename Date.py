@@ -2,14 +2,17 @@
 Sunshine Coast Puzzle Date – Puzzle & Picnic Quest
 Falafel + Dips + Prosciutto + Olives + Greens + Sweet Treat (No-Cook Lunch)
 
-Controls:
-- Type your answer and press Enter
-- Type 'hint' for a clue for that stage
-- Type 'q' to quit
+Runs as a Streamlit app:
+- Shows one stage at a time
+- Lets you type answers
+- 'Hint' button for each puzzle
+- Automatically moves to the next stage on a correct answer
 """
+
 import streamlit as st
 from dataclasses import dataclass
 from typing import List
+
 
 # ---------- Data model ----------
 
@@ -30,6 +33,8 @@ def normalize(text: str) -> str:
 # ---------- All stages ----------
 
 stages: List[Stage] = [
+
+    # STAGE 1 – KUNARA
 
     Stage(
         number=1,
@@ -52,13 +57,15 @@ stages: List[Stage] = [
             "Type the name that the code spells:"
         ),
         acceptable_answers=[
-            "Kunara",
-            "Kunara Organic Marketplace",
-            "Kunara Organics",
-            "Kunara Organic Market",
+            "kunara",
+            "kunara organic marketplace",
+            "kunara organics",
+            "kunara organic market",
         ],
         hint="Turn each number into a letter; you'll get a six-letter name on a big sign at Forest Glen.",
     ),
+
+    # STAGE 2 – FALAFEL
 
     Stage(
         number=2,
@@ -82,6 +89,8 @@ stages: List[Stage] = [
         acceptable_answers=["falafel", "falafels"],
         hint="Classic chickpea street food you'd wrap with salad and tahini.",
     ),
+
+    # STAGE 3 – OLIVES
 
     Stage(
         number=3,
@@ -109,6 +118,8 @@ stages: List[Stage] = [
         hint="Decode both rows and think of a briny thing in jars on antipasto platters.",
     ),
 
+    # STAGE 4 – PROSCIUTTO
+
     Stage(
         number=4,
         name="Delicate Cured Meat – Hidden Inside",
@@ -117,8 +128,8 @@ stages: List[Stage] = [
             "Still in the marketplace – walk to the deli / cold meats section.\n\n"
             "PUZZLE 4 – HIDDEN INSIDE A SENTENCE\n"
             "Your next card reads:\n\n"
-            "  'I'm a delicate cured meat that PROtectS Chefs In Unbelievably\n"
-            "   Tender TOasts when shaved paper-thin.'\n\n"
+            "  I'm a delicate cured meat that PROtectS Chefs In Unbelievably\n"
+            "  Tender TOasts when shaved paper-thin.\n\n"
             "Look carefully: the capitals hide the word.\n\n"
             "ROMANTIC PROMPT:\n"
             "  • Are you more into light, delicate foods or big hearty meals?\n\n"
@@ -127,6 +138,8 @@ stages: List[Stage] = [
         acceptable_answers=["prosciutto", "proscuitto"],
         hint="Take just the capital letters in order – they spell a thin Italian ham.",
     ),
+
+    # STAGE 5 – GREENS
 
     Stage(
         number=5,
@@ -156,62 +169,127 @@ stages: List[Stage] = [
         hint="Think of actual bagged salad names you see in the fridge section.",
     ),
 
-    Stage(
-        number=6,
-        name="Coastal Lighthouse Acrostic",
-        prompt=(
-            "TRAVEL TO THIS STAGE:\n"
-            "From the marketplace, DRIVE out to a well-known headland lighthouse.\n\n"
-            "PUZZLE 6 – ACROSTIC\n"
-            "Take the FIRST letter of each line:\n\n"
-            "  Pillars of white rise where the seas collide,\n"
-            "  Over looking the mouth where the river is wide.\n"
-            "  In storms and calm I shine through the night,\n"
-            "  Navigating sailors with my sweeping light.\n"
-            "  Tall on the headland, a steadfast sight.\n\n"
-            "ROMANTIC PROMPT:\n"
-            "  • What ocean place feels like 'home' to you, and why?\n\n"
-            "Type the full landmark name:"
-        ),
-        acceptable_answers=[
-            "Point Cartwright Lighthouse",
-            "Point Cartwright",
-            "Cartwright Lighthouse",
-        ],
-        hint="First letters form a 5-letter word at the start of the lighthouse name.",
+Stage(
+    number=6,
+    name="Forest Glen → Headland – Indo Surf Forecast Navigation (Hardest)",
+    prompt=(
+        "TRAVEL PUZZLE – SOLVE ON THE DRIVE (PASSENGER ONLY)\n"
+        "You’ve left Kunara and you’re heading toward the coast.\n"
+        "Your next clue is disguised as a 'MORNING SURF FORECAST' from\n"
+        "a fictional Indo island chain.\n\n"
+        "PUZZLE 6 – INDO SURF FORECAST NAVIGATION (HARDEST)\n"
+        "Each 'break' has a distance (km). Only some breaks matter.\n\n"
+        "SURF REPORT:\n"
+        "  Padang Left – 2 km\n"
+        "  Legian Backreef – 4 km\n"
+        "  Ombak Murni – 3 km\n"
+        "  Impossibles Bay – 5 km\n"
+        "  Nusa Dua Outpost – 6 km\n"
+        "  Temples Righthander – 7 km\n"
+        "  Teluk Putih – 11 km\n"
+        "  Canggu River Mouth – 13 km\n"
+        "  Amed Bowls – 17 km\n"
+        "  Rote Bend – 19 km\n"
+        "  Quinn’s Bluff – 9 km\n"
+        "  Tanjung Set – 23 km\n"
+        "  Wilis Peak – 29 km\n"
+        "  Raja Right – 31 km\n"
+        "  Indo Marlin Ledge – 37 km\n"
+        "  Gili Street Banks – 41 km\n"
+        "  Helang Corner – 43 km\n"
+        "  Tongkat Bay – 47 km\n\n"
+        "SCRIBBLED CLUES ON THE CARD:\n"
+        "  'Some distances are dodgy – the ones that can be split neatly into\n"
+        "   equal chunks again and again, or the ones that sit too perfectly on\n"
+        "   the grid like 4 or 9. Others end in 0 or 5, like old signs where\n"
+        "   the paint has worn off just right. Those spots are red herrings.\n\n"
+        "   The true breaks are rare: their kilometres stand alone, made only by\n"
+        "   1 and themselves. Keep those special distances, let the rest wash away.\n\n"
+        "   Then, in the order the report is written, take the very first letter\n"
+        "   of each break that survives. String those letters together and you'll\n"
+        "   see a name that doesn’t belong in Indo at all, but somewhere much\n"
+        "   closer – a Sunshine Coast headland you know by heart.'\n\n"
+        "ROMANTIC PROMPT (ON THE DRIVE):\n"
+        "  • If we did a surf trip anywhere in Indonesia together, where would\n"
+        "    you want to go first, and what board would you bring?\n\n"
+        "Your answer should be the headland with the lighthouse.\n\n"
+        "Type the landmark name:"
     ),
+    acceptable_answers=[
+        "point cartwright",
+        "point cartwright lighthouse",
+        "cartwright lighthouse",
+    ],
+    hint=(
+        "Distances that are composites, squares, or end in 0 or 5 are decoys.\n"
+        "The remaining ones are primes (only divisible by 1 and themselves).\n"
+        "Take the first letters of THOSE break names in order."
+    ),
+),
+
+
+    # STAGE 7 – RECEIPT CIPHER: THE VELO PROJECT
 
     Stage(
         number=7,
-        name="Warehouse Café – Hidden Name",
+        name="Warehouse Café – The Long Receipt Cipher",
         prompt=(
             "TRAVEL TO THIS STAGE:\n"
-            "From the lighthouse, DRIVE to a converted warehouse café in Mooloolaba.\n\n"
-            "PUZZLE 7 – NAME RIDDLE\n"
-            "Story on the card:\n\n"
-            "  'We roll up to a hidden spot near the sand.\n"
-            "   Inside, old BIKE frames hang on the walls,\n"
-            "   and worn-out WHEELS rest in every corner.\n"
-            "   It feels like a secret PROJECT someone built\n"
-            "   just for riders who want good coffee.'\n\n"
-            "Back of the card:\n"
-            "  'Take the idea of a BIKE and a PROJECT.\n"
-            "   Think of a two-word café name: first a word for a type of bike,\n"
-            "   then a word for a plan.'\n\n"
-            "ROMANTIC PROMPT:\n"
-            "  • If we could teleport to any café in the world, where would you pick?\n\n"
-            "Type the café’s name:"
+            "From the headland, DRIVE toward Mooloolaba.\n"
+            "You’re heading to a tucked-away warehouse-style breakfast café,\n"
+            "but its name is hidden in a fake 'receipt' on your card.\n\n"
+            "PUZZLE 7 – THE LONG RECEIPT CIPHER (HARD)\n"
+            "The card shows a printed receipt:\n\n"
+            "    -------------------------------------------------\n"
+            "    08:02   1x Vanilla latte\n"
+            "    08:03   1x Eggs on toast\n"
+            "    08:05   2x Loaded granola\n"
+            "    08:06   2x Orange juice\n"
+            "    08:08   2x Pancake stack\n"
+            "    08:10   2x Raspberry muffin\n"
+            "    08:11   3x Overnight oats\n"
+            "    08:13   1x Jam toast\n"
+            "    08:14   1x Espresso shot\n"
+            "    08:16   1x Chai latte\n"
+            "    08:18   2x Thick-cut toast\n"
+            "    -------------------------------------------------\n"
+            "    RANDOM CODE:\n"
+            "       21   4   10   13     |     14   16   12   9   4   2   18\n"
+            "    -------------------------------------------------\n"
+            "    INSTRUCTION:\n"
+            "      'Use A=1, B=2, ... Z=26.\n"
+            "       First, take each RANDOM CODE number and ADD the quantity\n"
+            "       shown at the front of the matching line above – in order.\n"
+            "       (1st code number uses the 1st line, 2nd uses the 2nd line, etc.)\n"
+            "       Then convert the NEW numbers to letters.\n"
+            "       The first four letters form word one.\n"
+            "       The last seven letters form word two.'\n\n"
+            "ROMANTIC PROMPT (ON THE DRIVE):\n"
+            "  • If we owned our own little warehouse breakfast spot, what would\n"
+            "    you put on the menu that feels the most 'us'?\n\n"
+            "Type the full two-word café name you decode:"
         ),
-        acceptable_answers=["The Velo Project", "Velo Project"],
-        hint="A French-ish word for 'bike' plus a word meaning 'plan' or 'task'.",
+        acceptable_answers=[
+            "the velo project",
+            "velo project",
+            "theveloproject",
+        ],
+        hint=(
+            "Start with the first code number (21) and add the quantity in front of\n"
+            "the first menu item (1) → 22 → V.\n"
+            "Do that all the way along, then decode with A=1."
+        ),
     ),
+
+    # STAGE 8 – ROCK POOLS
 
     Stage(
         number=8,
         name="Rock Pools – Alphabet Number Code",
         prompt=(
             "TRAVEL TO THIS STAGE:\n"
-            "From the café, go to the rock pools near the Spit.\n\n"
+            "From the warehouse café, go to the rock pools near the Spit in Mooloolaba.\n"
+            "- Drive a few minutes, then walk down toward the rocks.\n\n"
             "PUZZLE 8 – NUMBER CODE\n"
             "Two rows of numbers:\n\n"
             "  18   15   3   11\n"
@@ -219,14 +297,19 @@ stages: List[Stage] = [
             "Use A=1, B=2, ... Z=26 to decode.\n\n"
             "ROMANTIC PROMPT:\n"
             "  • Favourite childhood beach or rock-pool memory?\n\n"
-            "Type the full location name:"
+            "Type the full location name (you can include the suburb if you like):"
         ),
         acceptable_answers=[
-            "Rock Pools", "The Rock Pools", "Mooloolaba Rock Pools",
-            "Rock Pools Mooloolaba", "Rockpools"
+            "rock pools",
+            "the rock pools",
+            "mooloolaba rock pools",
+            "rock pools mooloolaba",
+            "rockpools",
         ],
-        hint="You literally spell what these things are.",
+        hint="You literally spell what these things are with A=1, B=2, etc.",
     ),
+
+    # STAGE 9 – GELATO + GPS
 
     Stage(
         number=9,
@@ -248,11 +331,13 @@ stages: List[Stage] = [
             "ROMANTIC PROMPT:\n"
             "  • If you could freeze this exact moment, what tiny detail\n"
             "    would you want to remember most?\n\n"
-            "Type the SIX-LETTER Italian word from 9A:"
+            "For the game, just type the SIX-LETTER Italian word from 9A:"
         ),
         acceptable_answers=["gelato"],
         hint="Read down the first letters of those six lines.",
     ),
+
+    # STAGE 10 – ALEXANDRA HEADLAND
 
     Stage(
         number=10,
@@ -266,14 +351,22 @@ stages: List[Stage] = [
             "  Little lines of surfers wait out the back,\n"
             "  Endless sets peel along the point at sunset,\n"
             "  X-marks the bend in the coast that locals love.\n\n"
+            "ROMANTIC PROMPT:\n"
+            "  • If we could watch the sunset from any place in the world\n"
+            "    (cliff, mountain, city, beach), where would you choose?\n\n"
             "Type the headland / area name:"
         ),
         acceptable_answers=[
-            "Alexandra Headland", "Alex Headland", "The Bluff",
-            "Alex Bluff", "Alex"
+            "alexandra headland",
+            "alex headland",
+            "the bluff",
+            "alex bluff",
+            "alex",
         ],
-        hint="Initials spell a short nickname surfers say all the time.",
+        hint="The initials of the four lines form a short nickname surfers use.",
     ),
+
+    # STAGE 11 – COASTAL WHOLE-FOOD STORE
 
     Stage(
         number=11,
@@ -283,18 +376,26 @@ stages: List[Stage] = [
             "From the headland, DRIVE to a coastal wholefoods area in Maroochydore.\n\n"
             "PUZZLE 11 – MULTI-ANSWER\n"
             "Your map circles three health/organic stores. Pick ANY ONE.\n\n"
-            "Type the name of the store you choose:"
+            "ROMANTIC PROMPT (PARKED OUTSIDE):\n"
+            "  • If we cooked together regularly, what kind of food\n"
+            "    do you imagine us making the most?\n\n"
+            "Type the name of the store you actually go to:"
         ),
         acceptable_answers=[
-            "Flannerys", "Flannerys Maroochydore",
-            "Flannerys Organic and Wholefood Market",
-            "Wholelife", "Wholelife Maroochydore",
-            "Wholelife Healthfoods Maroochydore",
-            "Fundies", "Fundies Maroochydore",
-            "Fundies Wholefood Market",
+            "flannerys",
+            "flannerys maroochydore",
+            "flannerys organic and wholefood market",
+            "wholelife",
+            "wholelife maroochydore",
+            "wholelife healthfoods maroochydore",
+            "fundies",
+            "fundies maroochydore",
+            "fundies wholefood market",
         ],
         hint="Any of the big organic/health shops in Maroochydore is fine.",
     ),
+
+    # STAGE 12 – DIPS
 
     Stage(
         number=12,
@@ -303,18 +404,27 @@ stages: List[Stage] = [
             "TRAVEL:\n"
             "Inside your chosen store – go to the chilled section.\n\n"
             "PUZZLE 12 – DIP RIDDLE\n"
-            "  'I hide in tubs along the chilled wall,\n"
-            "   I'm scooped or spread at every picnic and stall.\n"
-            "   Chickpeas or yoghurt, beetroot so bright,\n"
-            "   I'm perfect with bread in the soft afternoon light.'\n\n"
-            "Type ONE dip you pick (e.g. hummus, tzatziki):"
+            "  I hide in tubs along the chilled wall,\n"
+            "  I'm scooped or spread at every picnic and stall.\n"
+            "  Chickpeas or yoghurt, beetroot so bright,\n"
+            "  I'm perfect with bread in the soft afternoon light.\n\n"
+            "ROMANTIC PROMPT (CHOOSING DIPS):\n"
+            "  • What’s your ultimate dream picnic spread?\n\n"
+            "Name ONE dip you choose for your sandwich (e.g. hummus, tzatziki):"
         ),
         acceptable_answers=[
-            "hummus", "houmous", "baba ganoush", "baba ganouj",
-            "tzatziki", "beetroot dip", "dip"
+            "hummus",
+            "houmous",
+            "baba ganoush",
+            "baba ganouj",
+            "tzatziki",
+            "beetroot dip",
+            "dip",
         ],
-        hint="Any realistic savoury dip is fine.",
+        hint="Think of savoury spreads you scoop from tubs to go with bread and salad.",
     ),
+
+    # STAGE 13 – BREAD
 
     Stage(
         number=13,
@@ -323,18 +433,27 @@ stages: List[Stage] = [
             "TRAVEL:\n"
             "Same store – walk to the bread / bakery section.\n\n"
             "PUZZLE 13 – BREAD RIDDLE\n"
-            "  'I crackle when you squeeze me,\n"
-            "   I can be long or round or flat.\n"
-            "   I'm born in a bakery and die in a sandwich.\n"
-            "   Without me, the fillings fall flat.'\n\n"
+            "  I crackle when you squeeze me,\n"
+            "  I can be long or round or flat.\n"
+            "  I'm born in a bakery and die in a sandwich.\n"
+            "  Without me, the fillings fall flat.\n\n"
+            "ROMANTIC PROMPT (CHOOSING BREAD):\n"
+            "  • Are you more 'crusty sourdough' or 'soft Turkish' as a personality?\n\n"
             "Type the style of bread you pick (e.g. sourdough, ciabatta, Turkish bread):"
         ),
         acceptable_answers=[
-            "sourdough", "ciabatta", "turkish bread",
-            "turkish", "baguette", "rustic loaf", "bread"
+            "sourdough",
+            "ciabatta",
+            "turkish bread",
+            "turkish",
+            "baguette",
+            "rustic loaf",
+            "bread",
         ],
-        hint="Just name the loaf you're actually buying.",
+        hint="Just name the loaf you’re actually buying.",
     ),
+
+    # STAGE 14 – BOTANIC GARDEN PICNIC
 
     Stage(
         number=14,
@@ -343,20 +462,28 @@ stages: List[Stage] = [
             "TRAVEL TO THIS STAGE:\n"
             "From the coastal shops, DRIVE to a bushland botanic garden in Tanawha.\n\n"
             "PUZZLE 14 – GARDEN RIDDLE\n"
-            "  'Find the garden where art meets trees,\n"
-            "   Where stone and steel share space with leaves.\n"
-            "   Not by the sea, but not too far,\n"
-            "   A BUSHLAND BOTANIC hidden star.'\n\n"
-            "Type the place in simple words (e.g. 'botanic garden'):"
+            "  Find the garden where art meets trees,\n"
+            "  Where stone and steel share space with leaves.\n"
+            "  Not by the sea, but not too far,\n"
+            "  A BUSHLAND BOTANIC hidden star.\n\n"
+            "ROMANTIC PROMPT (AT THE PICNIC):\n"
+            "  • If we could pause time for 24 hours and stay in this exact moment,\n"
+            "    what would you want to do together in that time?\n\n"
+            "This is where you assemble your sandwich: dips + falafel + cured meat\n"
+            "+ olives + greens and share lunch.\n\n"
+            "Type the place in simple words:"
         ),
         acceptable_answers=[
-            "botanic garden", "botanic gardens",
+            "botanic garden",
+            "botanic gardens",
             "bushland botanic garden",
             "maroochy botanic garden",
             "maroochy bushland botanic garden",
         ],
-        hint="You're basically at a 'botanic garden' in the bushland.",
+        hint="Keep it simple – you’re basically in a 'botanic garden' in the bushland at Tanawha.",
     ),
+
+    # STAGE 15 – SWEET-TREAT VENUE TYPE
 
     Stage(
         number=15,
@@ -365,54 +492,86 @@ stages: List[Stage] = [
             "TRAVEL TO THIS STAGE:\n"
             "After your picnic, DRIVE to any dessert / sweet-treat spot you like.\n\n"
             "PUZZLE 15 – CATEGORY\n"
-            "  'Rings of dough? Frozen bowls? A raw treat stack?\n"
-            "   Just write what KIND of shop you're heading back.'\n\n"
-            "Type the STYLE of place (e.g. donut shop, dessert bar, acai bar, bakery):"
+            "  Rings of dough? Frozen bowls? A raw treat stack?\n"
+            "  Just write what KIND of shop you're heading back.\n\n"
+            "In real life, go to ANY dessert / sweet-treat spot you like nearby.\n\n"
+            "ROMANTIC PROMPT (AT THE COUNTER):\n"
+            "  • What's your go-to 'treat' when you've had a huge week?\n\n"
+            "For the game, type the STYLE of place you chose, for example:\n"
+            "  donut shop / dessert bar / acai bar / healthy cafe / bakery"
         ),
         acceptable_answers=[
-            "donut shop", "doughnut shop", "dessert bar",
-            "acai bar", "acai place", "healthy cafe",
-            "healthy café", "bakery"
+            "donut shop",
+            "doughnut shop",
+            "dessert bar",
+            "acai bar",
+            "acai place",
+            "healthy cafe",
+            "healthy café",
+            "bakery",
         ],
-        hint="Just the category, not the brand name.",
+        hint="You’re just naming the category of dessert place, not its specific brand.",
     ),
+
+    # STAGE 16 – SWEET-TREAT ITEM
 
     Stage(
         number=16,
         name="Sweet Treat – Menu Choice",
         prompt=(
             "TRAVEL:\n"
-            "You're now inside your dessert place.\n\n"
-            "PUZZLE 16 – WHAT DID YOU PICK?\n"
+            "You're now at your chosen dessert place.\n\n"
+            "PUZZLE 16 – MENU CHOICE\n"
+            "  Pick something that balances us:\n"
+            "  a little JOY, a little NOURISH.\n"
+            "  It might be round with icing,\n"
+            "  blended in a bowl,\n"
+            "  rolled into a ball,\n"
+            "  or sliced from something whole.\n\n"
+            "ROMANTIC PROMPT:\n"
+            "  • If our relationship was a dessert, what would it be and why?\n\n"
             "Type what you actually ordered (e.g. donut, acai bowl, bliss ball, raw slice):"
         ),
         acceptable_answers=[
-            "donut", "doughnut", "acai bowl", "acai",
-            "bliss ball", "raw slice", "brownie",
-            "healthy brownie", "protein ball"
+            "donut",
+            "doughnut",
+            "acai bowl",
+            "acai",
+            "bliss ball",
+            "raw slice",
+            "brownie",
+            "healthy brownie",
+            "protein ball",
         ],
-        hint="Whatever is on your plate/cup in front of you.",
+        hint="Just write the treat that ended up in front of you.",
     ),
+
+    # STAGE 17 – COTTON TREE RIVERWALK
 
     Stage(
         number=17,
         name="Riverwalk – Location Cipher",
         prompt=(
             "TRAVEL TO THIS STAGE:\n"
-            "From your dessert spot, DRIVE to a riverfront walk at Cotton Tree.\n\n"
+            "From your dessert place, DRIVE to a riverfront walk at Cotton Tree.\n\n"
             "PUZZLE 17 – SCRAMBLED CHUNKS\n"
             "  TREE   COT   RIV   WALK\n\n"
-            "Rearrange into a real place name including the suburb.\n\n"
+            "Rearrange these into a sensible two or three word place name\n"
+            "along the river where the suburb is also in the name.\n\n"
+            "ROMANTIC PROMPT (START OF THE WALK):\n"
+            "  • When do you feel most at peace in nature – ocean, river, forest, mountains?\n\n"
             "Type the location:"
         ),
         acceptable_answers=[
-            "Cotton Tree Riverwalk",
-            "Cotton Tree",
-            "Cotton Tree River Park",
-            "Cotton Tree Park",
+            "cotton tree riverwalk",
+            "cotton tree",
+            "cotton tree river park",
+            "cotton tree park",
         ],
-        hint="Put the suburb first, then something like 'riverwalk' or 'river park'.",
+        hint="Put the suburb word first, then a phrase for the river path or park there.",
     ),
+
+    # STAGE 18 – LOVE WORD
 
     Stage(
         number=18,
@@ -421,24 +580,40 @@ stages: List[Stage] = [
             "TRAVEL:\n"
             "You’re already on the riverwalk – just stroll a bit.\n\n"
             "PUZZLE 18 – CHOOSE ONE WORD\n"
-            "Which feels most like LOVE to you now:\n"
+            "Which feels most like LOVE to you right now:\n"
             "  • moving\n"
             "  • reflected\n"
             "  • still\n\n"
-            "Type one of those words:"
+            "There is no wrong answer – just what feels true.\n\n"
+            "ROMANTIC PROMPT (AFTER ANSWERING):\n"
+            "Share with each other:\n"
+            "  • Why did you choose that word? What about your connection feels like that?\n\n"
+            "Type your chosen word:"
         ),
-        acceptable_answers=["moving", "reflected", "still"],
-        hint="There’s no wrong answer; choose the word that feels right.",
+        acceptable_answers=[
+            "moving",
+            "reflected",
+            "still",
+        ],
+        hint="This is about feeling, not correctness. Pick the word that resonates.",
     ),
+
+    # STAGE 19 – FINAL HIDDEN SENTENCE
 
     Stage(
         number=19,
         name="Final Romantic Diagonal – Hidden Sentence",
         prompt=(
             "TRAVEL:\n"
-            "Stay on the riverwalk somewhere quiet.\n\n"
+            "Stay right here on the riverwalk, maybe pause somewhere quiet with a view.\n\n"
             "PUZZLE 19 – ONE CAPITAL PER LINE\n"
-            "Take the single CAPITAL letter in each line, top to bottom:\n\n"
+            "Your last card looks like a block of perfectly normal sentences –\n"
+            "except each line hides ONE capital letter somewhere in the middle.\n"
+            "The note says:\n\n"
+            "  'In each line there is exactly ONE CAPITAL letter.\n"
+            "   Read those capital letters from TOP to BOTTOM\n"
+            "   to reveal what you already feel.'\n\n"
+            "The card reads:\n\n"
             "  lazy daYs leave golden light on the water\n"
             "  soft fOam gathers gently at our feet\n"
             "  sea spray wraps aroUnd us as we laugh\n"
@@ -463,10 +638,14 @@ stages: List[Stage] = [
             "  the worlD can wait for us a while\n"
             "  as the lAst light touches the water\n"
             "  i know that todaY was better with you in it\n\n"
-            "Type the full hidden sentence:"
+            "ROMANTIC PROMPT (AFTER TYPING IT):\n"
+            "Say it out loud to each other and just pause for a moment.\n\n"
+            "Type that full sentence here to finish the adventure:"
         ),
-        acceptable_answers=["you are the best part of my day"],
-        hint="Starts with 'you' and sums up the whole date.",
+        acceptable_answers=[
+            "you are the best part of my day",
+        ],
+        hint="It starts with 'you' and sums up how this whole date has felt.",
     ),
 ]
 
@@ -542,8 +721,5 @@ def main():
                 st.error("Not quite. Try again or tap **Hint 💡**.")
 
 
-
 if __name__ == "__main__":
     main()
-
-
