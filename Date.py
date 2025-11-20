@@ -193,10 +193,14 @@ Stage(
         "  Quinn’s Bluff – 9 km\n"
         "  Tanjung Set – 23 km\n"
         "  Wilis Peak – 29 km\n"
+        "  Maui - 30 km\n"
         "  Raja Right – 31 km\n"
         "  Indo Marlin Ledge – 37 km\n"
         "  Gili Street Banks – 41 km\n"
+        "  Ekkas - 340 km\n"
         "  Helang Corner – 43 km\n"
+        "  Mentawais - 40 km\n"
+        "  Gerupuk - 100 km\n"
         "  Tongkat Bay – 47 km\n\n"
         "SCRIBBLED CLUES ON THE CARD:\n"
         "  'Some distances are dodgy – the ones that can be split neatly into\n"
@@ -223,7 +227,9 @@ Stage(
     hint=(
         "Distances that are composites, squares, or end in 0 or 5 are decoys.\n"
         "The remaining ones are primes (only divisible by 1 and themselves).\n"
+        "Prime distances left: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47.\n"
         "Take the first letters of THOSE break names in order."
+    
     ),
 ),
 
@@ -723,3 +729,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
