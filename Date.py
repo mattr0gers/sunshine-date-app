@@ -537,7 +537,7 @@ def main():
                     st.session_state.stage_index += 1
                 else:
                     st.session_state.finished = True
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error("Not quite. Try again or tap **Hint 💡**.")
 
@@ -545,4 +545,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
